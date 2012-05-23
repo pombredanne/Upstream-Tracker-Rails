@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Package Name:</b>
+  <%= @record.pkgName %>
+</p>
+
+<p>
+  <b>Branch:</b>
+  <%= @record.branch %>
+</p>
+
+<p>
+  <b>Method:</b>
+  <%= @record.method %>
+</p>
+
+<p>
+  <b>URL:</b>
+  <%= @record.info %>
+</p>
+
+<p>
+  <b>Version Stability:</b>
+  <%= @record.verctrl %>
+</p>
+
+<p>
+  <b>Version Stability Info:</b>
+  <%= @record.verctrlInfo %>
+</p>
+
+<p>
+  <b>Processed?:</b>
+  <%= @record.processed %>
+</p>
+
+<p>
+  <b>Error:</b>
+  <%= @record.error %>
+</p>
+
+<p>
+  <b>Error Message:</b>
+  <%= @record.errorMessage %>
+</p>
+
+
+<%= link_to 'Edit', edit_record_path(@record) %> |
+<%= link_to 'Back', records_path %>

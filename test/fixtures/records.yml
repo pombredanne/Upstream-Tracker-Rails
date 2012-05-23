@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pkgName: MyString
+  branch: MyString
+  method: MyString
+  info: MyString
+  verctrl: MyString
+  verctrlInfo: MyString
+  processed: false
+  error: false
+  errorMessage: MyText
+
+two:
+  pkgName: MyString
+  branch: MyString
+  method: MyString
+  info: MyString
+  verctrl: MyString
+  verctrlInfo: MyString
+  processed: false
+  error: false
+  errorMessage: MyText

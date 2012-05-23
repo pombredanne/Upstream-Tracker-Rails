@@ -1,0 +1,9 @@
+class AddDefaultValues < ActiveRecord::Migration
+  def up
+    change_column :records, :method, :string, default: http
+  end
+
+  def down
+    change_column :records, :method, :string, default:""
+  end
+end

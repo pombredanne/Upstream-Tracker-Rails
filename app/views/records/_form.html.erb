@@ -1,0 +1,41 @@
+<%= form_for(@record) do |f| %>
+  <% if @record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+      <ul>
+      <% @record.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :"Package Name" %><br />
+    <%= f.text_field :pkgName %>
+  </div>
+  <div class="field">
+    <%= f.label :branch %><br />
+    <%= f.text_field :branch %>
+  </div>
+  <div class="field">
+    <%= f.label :method %><br />
+    <%= f.text_field :method %>
+  </div>
+  <div class="field">
+    <%= f.label :"URL" %><br />
+    <%= f.text_field :info %>
+  </div>
+  <div class="field">
+    <%= f.label :"Version Stability" %><br />
+    <%= f.text_field :verctrl %>
+  </div>
+  <div class="field">
+    <%= f.label :"version Stability Information" %><br />
+    <%= f.text_field :verctrlInfo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
