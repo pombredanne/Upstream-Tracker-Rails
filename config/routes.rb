@@ -1,4 +1,6 @@
 TrackerRails::Application.routes.draw do
+  get "errors/index"
+
   resources :records
 
   get "home/index"
