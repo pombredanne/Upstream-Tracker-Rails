@@ -18,7 +18,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml { render :xml => @records }
+      format.xml { render :xml => @record }
       format.json { render :json => @record }
     end
   end
@@ -30,7 +30,7 @@ class RecordsController < ApplicationController
     
     respond_to do |format|
       format.html # new.html.erb
-      format.xml { render :xml => @records }
+      format.xml { render :xml => @record }
       format.json { render :json => @record }
     end
   end

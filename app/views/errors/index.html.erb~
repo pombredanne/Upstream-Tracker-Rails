@@ -1,0 +1,33 @@
+<h1>Listing records</h1>
+
+<table>
+  <tr>
+    <th>Package Name</th>
+    <th>Branch</th>
+    <th>Method</th>
+    <th>URL</th>
+    <th>Version Stability</th>
+    <th>Version Stability Info</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @errors.each do |record| %>
+  <tr>
+    <td><%= record.pkgName %></td>
+    <td><%= record.branch %></td>
+    <td><%= record.method %></td>
+    <td><%= record.info %></td>
+    <td><%= record.verctrl %></td>
+    <td><%= record.verctrlInfo %></td>
+    <td><%= link_to 'Show', record %></td>
+    <td><%= link_to 'Edit', edit_record_path(record) %></td>
+    <td><%= button_to 'Destroy', record, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Record', new_record_path %>

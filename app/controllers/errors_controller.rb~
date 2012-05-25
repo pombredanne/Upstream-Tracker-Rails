@@ -1,0 +1,13 @@
+class ErrorsController < ApplicationController
+  # GET /errors
+  # GET /errors.json
+  def index
+    @errors = Record.where("error  = 1")
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml { render :xml => @errors }
+      format.json { render :json => @errors }
+    end
+  end
+end
