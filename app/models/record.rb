@@ -8,5 +8,7 @@ class Record < ActiveRecord::Base
   def processed
     read_attribute(:processed) or false
   end
+  
+  validates :pkgName,:branch,:method,:info, :presence => true
 
 end
