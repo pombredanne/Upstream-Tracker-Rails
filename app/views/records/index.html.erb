@@ -14,7 +14,7 @@
   </tr>
 
 <% @records.each do |record| %>
-  <tr <% if record.error==true  %> bgcolor=red <% else %> bgcolor=green <% end  %> >
+  <tr <% if record.error==true && record.processed==true %> bgcolor=red <% elsif record.error==false && record.processed==true %> bgcolor=green <% end  %> >
     <td><%= record.pkgName %></td>
     <td><%= record.branch %></td>
     <td><%= record.method %></td>

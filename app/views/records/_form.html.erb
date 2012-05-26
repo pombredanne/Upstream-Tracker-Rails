@@ -6,7 +6,7 @@
       <ul>
       <% @record.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
-      <% end %>
+      <% end %><br />
       </ul>
     </div>
   <% end %>
@@ -14,27 +14,27 @@
   <div class="field">
     <%= f.label :"Package Name" %><br />
     <%= f.text_field :pkgName %>
-  </div>
+  </div><br />
   <div class="field">
     <%= f.label :branch %><br />
     <%= f.text_field :branch %>
-  </div>
+  </div><br />
   <div class="field">
     <%= f.label :method %><br />
     <%= f.text_field :method %>
-  </div>
+  </div><br />
   <div class="field">
     <%= f.label :"URL" %><br />
     <%= f.text_field :info %>
-  </div>
+  </div><br />
   <div class="field">
     <%= f.label :"Version Stability" %><br />
     <%= f.text_field :verctrl %>
-  </div>
+  </div><br />
   <div class="field">
     <%= f.label :"version Stability Information" %><br />
     <%= f.text_field :verctrlInfo %>
-  </div>
+  </div><br /><br />
   <div class="actions">
     <%= f.submit %>
   </div>
