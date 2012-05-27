@@ -2,7 +2,7 @@ class ErrorsController < ApplicationController
   # GET /errors
   # GET /errors.json
   def index
-    @errors = Record.all(:conditions => {:error => true})
+    @errors = Record.all(:conditions => {:error => true, :processed => true})
 
     respond_to do |format|
       format.html # index.html.erb
