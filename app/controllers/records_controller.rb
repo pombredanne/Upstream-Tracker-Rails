@@ -62,9 +62,12 @@ class RecordsController < ApplicationController
   # PUT /records/1.json
   def update
     @record = Record.find(params[:id])
-
+        
     respond_to do |format|
       if @record.update_attributes(params[:record])
+	@record.error='false'
+	@record.processed='false'
+	@record.save
         format.html { redirect_to @record, :notice => 'Record was successfully updated.' }
         format.xml { head :no_content } 
 	 format.json { head :no_content }
