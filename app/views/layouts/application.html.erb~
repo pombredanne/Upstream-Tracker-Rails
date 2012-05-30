@@ -12,8 +12,9 @@
       <h1><a href="/">Upstream Tracker</a></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
-          <li><a href="records">Records</a></li>
-          <li><a href="errors/index">Errors</a></li>          
+          <li><a href="/records">Records</a></li>
+          <li><a href="errors/index">Errors</a></li>
+          <li><a href="/faq/index">FAQ</a></li>
         </ul>
       </div>
       <div id="main-navigation">
