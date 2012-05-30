@@ -36,13 +36,18 @@
 </p>
 
 <p>
-  <b>Error:</b>
+  <b>Error?:</b>
   <%= @record.error %>
 </p>
 
 <p>
   <b>Error Message:</b>
   <%= @record.errorMessage %>
+</p>
+
+<p>
+  <b>Latest Version:</b>
+  <%= @record.latest_ver %>
 </p>
 
 

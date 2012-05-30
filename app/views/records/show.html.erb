@@ -45,6 +45,11 @@
   <%= @record.errorMessage %>
 </p>
 
+<p>
+  <b>Latest Version:</b>
+  <%= @record.latest_ver %>
+</p>
+
 
 <%= link_to 'Edit', edit_record_path(@record) %> |
 <%= link_to 'Back', records_path %>
