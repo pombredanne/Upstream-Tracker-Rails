@@ -1,4 +1,6 @@
 TrackerRails::Application.routes.draw do
+  get "faq/index"
+
   get "errors/index"
 
   resources :records
