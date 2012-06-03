@@ -94,7 +94,14 @@ class RecordsController < ApplicationController
   
   def search
     if params[:query]
-      @records = Record.where("pkgName = ?",params[:query])
+      @records = Record.where(:pkgName => params[:query])
+      if @records.size==1
+	respond_to do |format|
+	  format.html { redirect_to /records/1 }
+	  format.xml { head :no_content }
+	  format.json { head :no_content }
+	end
+      end
     else
       @records = []
     end

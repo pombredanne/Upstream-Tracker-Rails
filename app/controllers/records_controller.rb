@@ -95,6 +95,9 @@ class RecordsController < ApplicationController
   def search
     if params[:query]
       @records = Record.where(:pkgName => params[:query])
+      if @records.size==1
+	redirect_to :action => "show", :id => @records.find(:first).id
+      end
     else
       @records = []
     end
