@@ -17,7 +17,7 @@
   </div><br />
   <div class="field">
     <%= f.label :branch %><br />
-    <%= f.text_field :branch %>
+    <%= f.text_field :branch, :value => "latest", :disabled => true %>
   </div><br />
   <div class="field">
     <%= f.label :method %><br />
@@ -26,14 +26,6 @@
   <div class="field">
     <%= f.label :"URL" %><br />
     <%= f.text_field :info %>
-  </div><br />
-  <div class="field">
-    <%= f.label :"Version Stability" %><br />
-    <%= f.text_field :verctrl %>
-  </div><br />
-  <div class="field">
-    <%= f.label :"version Stability Information" %><br />
-    <%= f.text_field :verctrlInfo %>
   </div><br /><br />
   <div class="actions">
     <%= f.submit %>
