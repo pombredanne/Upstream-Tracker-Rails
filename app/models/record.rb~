@@ -1,5 +1,5 @@
 class Record < ActiveRecord::Base
-  attr_accessible :error,:processed,:branch, :errorMessage, :info, :method, :pkgName, :verctrl, :verctrlInfo, :latest_ver
+  attr_accessible :error,:processed,:branch, :errorMessage, :info, :method, :pkgName, :latest_ver
   
   def error
     read_attribute(:error) or false
