@@ -1,0 +1,10 @@
+<% if @records.empty? %>
+        <span>There were no results for your query</span><br/><br/>
+<% else %>
+<h2>Did you mean? </h2>
+<ul>
+<% for record in @records %>
+<li><%= record.pkgName %> - <%= record.info %> <%= link_to "Show", record %></li>
+<% end %>
+</ul>
+<% end %>

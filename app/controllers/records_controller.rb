@@ -91,4 +91,13 @@ class RecordsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def search
+    if params[:query]
+      @records = Record.where(:pkgName => params[:query])
+    else
+      @records = []
+    end
+  end
+  
 end
