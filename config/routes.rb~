@@ -64,7 +64,8 @@ TrackerRails::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
   
-  match '/records/search', :controller => 'records', :action => 'search'
+  match '/search', :controller => 'records', :action => 'search'
+  match '/errors', :controller => 'errors', :action => 'index'
 
   
 end

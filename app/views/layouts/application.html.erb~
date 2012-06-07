@@ -13,9 +13,9 @@
       <div id="user-navigation">
         <ul class="wat-cf">
           <li><a href="/records">Records</a></li>
-          <li><a href="errors/index">Errors</a></li>
-          <li><a href="/faq/index">FAQ</a></li>
-          <li><form action='records/search'><input name="query" type="text" /><input type='submit' /></form></li>
+          <li><a href="/errors">Errors</a></li>
+          <li><a href="/faq">FAQ</a></li>
+          <li><form action='/search'><input name="query" type="text" /><input type='submit' /></form></li>
         </ul>
       </div>
       <div id="main-navigation">

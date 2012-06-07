@@ -65,6 +65,7 @@ TrackerRails::Application.routes.draw do
   # match ':controller(/:action(/:id))(.:format)'
   
   match '/search', :controller => 'records', :action => 'search'
-
+  match '/errors', :controller => 'errors', :action => 'index'
+  match '/faq', :controller => 'faq', :action => 'index'
   
 end
