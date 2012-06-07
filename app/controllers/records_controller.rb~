@@ -44,6 +44,9 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(params[:record])
+    
+    @record.error='false'
+    @record.processed='false'
 
     respond_to do |format|
       if @record.save
@@ -65,10 +68,7 @@ class RecordsController < ApplicationController
         
     respond_to do |format|
       if @record.update_attributes(params[:record])
-	@record.error='false'
-	@record.processed='false'
-	@record.save
-        format.html { redirect_to @record, :notice => 'Record was successfully updated.' }
+	format.html { redirect_to @record, :notice => 'Record was successfully updated.' }
         format.xml { head :no_content } 
 	 format.json { head :no_content }
       else
@@ -96,11 +96,7 @@ class RecordsController < ApplicationController
     if params[:query]
       @records = Record.where(:pkgName => params[:query])
       if @records.size==1
-	respond_to do |format|
-	  format.html { redirect_to /records/1 }
-	  format.xml { head :no_content }
-	  format.json { head :no_content }
-	end
+	redirect_to :action => "show", :id => @records.find(:first).id
       end
     else
       @records = []

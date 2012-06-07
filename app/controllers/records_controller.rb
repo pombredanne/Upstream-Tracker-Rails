@@ -44,6 +44,9 @@ class RecordsController < ApplicationController
   # POST /records.json
   def create
     @record = Record.new(params[:record])
+    
+    @record.error='false'
+    @record.processed='false'
 
     respond_to do |format|
       if @record.save
@@ -65,16 +68,13 @@ class RecordsController < ApplicationController
         
     respond_to do |format|
       if @record.update_attributes(params[:record])
-	@record.error='false'
-	@record.processed='false'
-	@record.save
-        format.html { redirect_to @record, :notice => 'Record was successfully updated.' }
+	format.html { redirect_to @record, :notice => 'Record was successfully updated.' }
         format.xml { head :no_content } 
-	 format.json { head :no_content }
+	format.json { head :no_content }
       else
         format.html { render :action => "edit" }
         format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
-	 format.json { render :json => @record.errors, :status => :unprocessable_entity }
+	format.json { render :json => @record.errors, :status => :unprocessable_entity }
       end
     end
   end
