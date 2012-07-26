@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603184812) do
+ActiveRecord::Schema.define(:version => 20120726065135) do
 
   create_table "records", :force => true do |t|
     t.string   "pkgName"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20120603184812) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.string   "latest_ver"
+    t.string   "loc"
   end
 
   create_table "versions", :force => true do |t|

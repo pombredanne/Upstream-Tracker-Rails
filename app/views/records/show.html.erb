@@ -40,6 +40,10 @@
   <%= @record.latest_ver %>
 </p>
 
+<p>
+  <b>File URL:</b>
+  <%= @record.loc %>
+</p>
 
 <%= link_to 'Edit', edit_record_path(@record) %> |
 <%= link_to 'Back', records_path %>

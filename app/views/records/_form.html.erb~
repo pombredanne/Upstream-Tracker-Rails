@@ -21,7 +21,7 @@
   </div><br />
   <div class="field">
     <%= f.label :method %><br />
-    <%= f.select :method, ['upstream','ftpls','httpls','dualhttpls','subdirhttpls','svnls','sf','google','lp','trac'], :selected => @record.method %>   <%=link_to(image_tag("question_mark_grey.jpg"),  :controller => "faq", :action => "index") %>
+    <%= f.select :method, ['upstream','ftpls','httpls','dualhttpls','subdirhttpls','svnls','sf','google','lp','trac','custom'], :selected => @record.method %>   <%=link_to(image_tag("question_mark_grey.jpg"),  :controller => "faq", :action => "index") %>
   </div><br />
   <div class="field">
     <%= f.label :"URL" %><br />
@@ -30,4 +30,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <div class="field">
+    <%= f.text_field :processed, :value => "false", :hidden=>true %>
+  </div><br /><br />
 <% end %>
