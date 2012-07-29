@@ -31,9 +31,9 @@
     <%= f.submit %>
   </div>
   <div class="field">
-    <%= f.text_field :processed, :value => "false", :hidden=>true %>
+    <%= f.hidden_field :processed, :value => "false", :hidden=>true %>
   </div><br /><br />
   <div class="field">
-    <%= f.text_field :loc, :value => "", :hidden=>true %>
+    <%= f.hidden_field :loc, :value => "", :hidden=>true %>
   </div>
 <% end %>
