@@ -1,3 +1,24 @@
+<script>
+
+function populateURL(file)
+{
+   if (file) {
+      var reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (evt) {
+          contents=evt.target.result;
+          data=contents.split(' ');
+          url=data[data.length-1];
+          document.getElementById('url').value=url;
+      }
+      reader.onerror = function (evt) {
+          document.getElementById('url').value="error reading file";
+      }
+   }
+}
+
+</script>
+
 <%= form_for(@record) do |f| %>
   <% if @record.errors.any? %>
     <div id="error_explanation">
@@ -25,8 +46,9 @@
   </div><br />
   <div class="field">
     <%= f.label :"URL" %><br />
-    <%= f.text_field :info %>
+    <%= f.text_field :info, :id => 'url' %>
   </div><br /><br />
+
   <div class="actions">
     <%= f.submit %>
   </div>
@@ -37,3 +59,9 @@
     <%= f.hidden_field :loc, :value => "", :hidden=>true %>
   </div>
 <% end %>
+
+<div class="field">
+    <input type='file' id='file1'>
+    <input type='button' value='Extract URL' onclick='populateURL(document.getElementById("file1").files[0])'>
+
+  </div><br /><br />
