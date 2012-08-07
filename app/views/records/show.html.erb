@@ -47,3 +47,42 @@
 
 <%= link_to 'Edit', edit_record_path(@record) %> |
 <%= link_to 'Back', records_path %>
+
+<br /><br /><br />
+<hr>
+<br />
+
+<h3> Version History </h3>
+
+<br />
+
+<table border=1>
+<tr>
+	<th>
+	Version
+	</th>
+	<th>
+	Value
+	</th>
+	<th>
+	Event
+	</th>
+	<th> </th>
+</tr>	
+<% for version in @record.versions.reverse %>
+<tr>
+	<td>
+	<%= version.id %>
+	</td>
+	<td>
+	<%= version.object %>
+	</td>
+	<td>
+	<%= version.event %>
+	</td>
+	<td>
+	<%= link_to "Restore", restore_path(:id=>@record.id, :ver=>version.id)%>
+	</td>
+</tr>
+<% end %>
+</table>

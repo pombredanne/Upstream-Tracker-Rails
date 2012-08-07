@@ -67,5 +67,8 @@ TrackerRails::Application.routes.draw do
   match '/search', :controller => 'records', :action => 'search'
   match '/errors', :controller => 'errors', :action => 'index'
   match '/faq', :controller => 'faq', :action => 'index'
+
+  match '/records/:id/revert/:ver', :controller => 'records', :action => 'revert', :as => 'restore', :via => 'PUT'
+  match '/records/:id/revert/:ver', :controller => 'records', :action => 'revert', :as => 'restore', :via => 'GET'
   
 end

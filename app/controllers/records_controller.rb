@@ -47,6 +47,7 @@ class RecordsController < ApplicationController
     
     @record.error='false'
     @record.processed='false'
+    @record.errorMessage=''
 
     respond_to do |format|
       if @record.save
@@ -55,7 +56,7 @@ class RecordsController < ApplicationController
 	 format.json { render :json => @record, :status => :created, :location => @record }
       else
         format.html { render :action => "new" }
-	 format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
+	format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
         format.json { render :json => @record.errors, :status => :unprocessable_entity }
       end
     end
@@ -103,4 +104,25 @@ class RecordsController < ApplicationController
     end
   end
   
+  def revert
+
+    @record = Record.find(params[:id])
+    @record = @record.versions.find(params[:ver]).reify
+    @record.error='false'
+    @record.processed='false'
+    @record.errorMessage=''
+
+    respond_to do |format|
+      if @record.save
+	format.html { redirect_to @record, :notice => 'Record was successfully updated.' }
+        format.xml { head :no_content } 
+	format.json { head :no_content }
+      else
+        format.html { render :action => "edit" }
+        format.xml { render :xml => @record.errors, :status => :unprocessable_entity }
+	format.json { render :json => @record.errors, :status => :unprocessable_entity }
+      end
+    end
+
+  end
 end
