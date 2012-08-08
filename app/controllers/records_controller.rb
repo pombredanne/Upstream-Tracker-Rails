@@ -1,4 +1,8 @@
 class RecordsController < ApplicationController
+
+  before_filter :authenticate_user!,
+    :only => [:destroy, :revert]
+    
   # GET /records
   # GET /records.json
   def index

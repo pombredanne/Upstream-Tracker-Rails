@@ -3,7 +3,7 @@
 <head>
   <title>Upstream Tracker</title>
   <%= stylesheet_link_tag "web-app-theme/base", "web-app-theme/themes/default/style", "web-app-theme/override", :cache => true %>
- <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tag %>
 </head>
 <body>
@@ -12,6 +12,11 @@
       <h1><a href="/">Upstream Tracker</a></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
+          <% unless user_signed_in? -%>
+	    <li><%= link_to "Sign in", new_user_session_path %></li>
+          <% else -%>
+            <li> <%= link_to "Sign out", destroy_user_session_path %></li>
+          <% end -%>
           <li><a href="/records">Records</a></li>
           <li><a href="/errors">Errors</a></li>
           <li><a href="/faq">FAQ</a></li>

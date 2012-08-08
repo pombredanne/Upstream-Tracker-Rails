@@ -1,4 +1,6 @@
 TrackerRails::Application.routes.draw do
+  devise_for :users
+
   get "faq/index"
 
   get "errors/index"
