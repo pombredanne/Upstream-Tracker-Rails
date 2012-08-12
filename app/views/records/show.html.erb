@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<p><h1>Package Details</h1></p><br>
+
 <p>
   <b>Package Name:</b>
   <%= @record.pkgName %>
@@ -17,7 +19,7 @@
 
 <p>
   <b>URL:</b>
-  <%= @record.info %>
+  <%= @record.info %>	
 </p>
 
 <p>
@@ -42,7 +44,9 @@
 
 <p>
   <b>File URL:</b>
-  <%= @record.loc %>
+  <% for url in @record.loc.split(',') %>
+	<a href=<%=url.strip() %>><%=url.strip() %></a>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_record_path(@record) %> |
@@ -58,24 +62,51 @@
 
 <table border=1>
 <tr>
-	<th>
+	<th rowspan=2>
 	Version
 	</th>
-	<th>
+	<th colspan=6>
 	Value
 	</th>
-	<th>
+	<th rowspan=2>
 	Event
 	</th>
-	<th> </th>
+	<th rowspan=2> </th>
 </tr>	
-<% for version in @record.versions.reverse %>
 <tr>
+	<th>Pkg. Name</th>
+	<th>Branch</th>
+	<th>Method</th>
+	<th>URL</th>
+	<th>Error?</th>
+	<th>Latest Ver</th>
+</tr>
+<% for version in @record.versions.reverse %>
+<% if version.reify.error==true %>
+  <tr bgcolor=red>
+<% else %>
+  <tr bgcolor=green>
+<% end %>
 	<td>
 	<%= version.id %>
 	</td>
 	<td>
-	<%= version.object %>
+	<%= version.reify.pkgName %>
+	</td>
+	<td>
+	<%= version.reify.branch %>
+	</td>
+	<td>
+	<%= version.reify.method %>
+	</td>
+	<td>
+	<%= version.reify.info %>
+	</td>
+	<td>
+	<%= version.reify.error %>
+	</td>
+	<td>
+	<%= version.reify.latest_ver %>
 	</td>
 	<td>
 	<%= version.event %>

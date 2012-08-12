@@ -3,9 +3,10 @@
 <table>
   <tr>
     <th>Package Name</th>
-    <th>Branch</th>
+    <th>Branch(es)</th>
     <th>Method</th>
     <th>URL</th>
+    <th>Latest Version(s)</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
     <td><%= record.branch %></td>
     <td><%= record.method %></td>
     <td><%= record.info %></td>
+    <td><%= record.latest_ver %></td>
     <td><%= link_to 'Show', record %></td>
     <td><%= link_to 'Edit', edit_record_path(record) %></td>
     <td><%= button_to 'Destroy', record, :confirm => 'Are you sure?', :method => :delete %></td>
