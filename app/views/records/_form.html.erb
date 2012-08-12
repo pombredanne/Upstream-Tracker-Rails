@@ -9,6 +9,17 @@ function populateURL(file)
           contents=evt.target.result;
           data=contents.split(' ');
           url=data[data.length-1];
+
+          var m=url.search("sourceforge.net");
+          var n=url.search("sf.net");
+
+	  if (m>0 || n>0)
+	  {
+              var prjname=url.split('/')[url.split('/').length-2];
+              var regex=url.split('/')[url.split('/').length-1];
+	      url="http://sourceforge.net/api/file/index/project-name/"+prjname+"/rss/"+regex;	      
+          }
+
           document.getElementById('url').value=url;
       }
       reader.onerror = function (evt) {
