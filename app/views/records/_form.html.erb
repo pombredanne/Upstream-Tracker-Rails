@@ -50,11 +50,11 @@ function populateURL(file)
   </div><br />
   <div class="field">
     <%= f.label :branch %><br />
-    <%= f.text_field :branch, :value => "latest" %>
+    <%= f.text_field :branch, :value => @record.branch %>
   </div><br />
   <div class="field">
     <%= f.label :method %><br />
-    <%= f.select :method, ['upstream','ftpls','httpls','dualhttpls','subdirhttpls','svnls','sf','google','lp','trac','custom'], :selected => @record.method %>   <%=link_to(image_tag("question_mark_grey.jpg"),  :controller => "faq", :action => "index") %>
+    <%= f.select :method, ['upstream','ftpls','httpls','dualhttpls','subdirhttpls','svnls','sf','google','lp','trac','custom'], :selected => @record.method %>   
   </div><br />
   <div class="field">
     <%= f.label :"URL" %><br />
