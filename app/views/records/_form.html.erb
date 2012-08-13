@@ -7,8 +7,21 @@ function populateURL(file)
       reader.readAsText(file, "UTF-8");
       reader.onload = function (evt) {
           contents=evt.target.result;
-          data=contents.split(' ');
-          url=data[data.length-1];
+          
+          var x=contents.search('http')
+
+	  if (x>0)
+          {
+              url=contents.substr(x,contents.length-1)
+	  }
+
+          var y=contents.search('ftp')
+
+	  if (y>0)
+          {
+              url=contents.substr(y,contents.length-1)
+	  }
+
 
           var m=url.search("sourceforge.net");
           var n=url.search("sf.net");
