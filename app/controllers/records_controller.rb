@@ -102,7 +102,7 @@ class RecordsController < ApplicationController
       @records = Record.find(:all, :conditions => ["pkgname LIKE ?", "#{params[:query]}%"])
 
       if @records.size==1
-	redirect_to :action => "show", :id => @records.find(:first).id
+	redirect_to :action => "show", :id => @records[0].id
       end
     else
       @records = []
