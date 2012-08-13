@@ -2,9 +2,20 @@
         <span>There were no results for your query</span><br/><br/>
 <% else %>
 <h2>Did you mean? </h2>
-<ul>
+<table>
+<tr>
+  <th>Pkg.Name</th>
+  <th>URL</th>
+  <th>Branch</th>
+  <th></th>
+</tr>
 <% for record in @records %>
-<li><%= record.pkgName %> - <%= record.info %> <%= link_to "Show", record %></li>
+<tr>
+  <td><%= record.pkgName %></td>
+  <td><%= record.info %></td>
+  <td><%= record.branch %></td>
+  <td><%= link_to "Show", record %><td>
+</tr>
 <% end %>
-</ul>
+</table>
 <% end %>
