@@ -21,7 +21,7 @@ function populateURL(file)
           {
               url=contents.substr(y,contents.length-1)
 	  }
-
+	  url=url.split(' ')[0]
 
           var m=url.search("sourceforge.net");
           var n=url.search("sf.net");
