@@ -99,7 +99,8 @@ class RecordsController < ApplicationController
   
   def search
     if params[:query]
-      @records = Record.where(:pkgName => params[:query])
+      @records = Record.find(:all, :conditions => ["pkgname LIKE ?", "#{params[:query]}%"])
+
       if @records.size==1
 	redirect_to :action => "show", :id => @records.find(:first).id
       end
