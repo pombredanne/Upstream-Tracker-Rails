@@ -1,5 +1,98 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-<p>Introduction to upstream tracker, usage info, examples to add records, updates etc goes here.</p>
-<p>Find me in app/views/home/index.html.erb</p>
-<p>Introduction to upstream tracker, usage info, examples to add records, updates etc goes here.</p>
+<font size=2><h2>What is the Upstream Tracker Project?</h2>
+<p>The Upstream Tracker Project aims to be a one stop solution for tracking the 	upstream versions of various open source softwares. Since open source softwares are 	scattered all over the place, a central tracking system was needed to track version 	updates for packaging and other reasons. Traditionally, package maintainers would 	have to keep an eye out and check manually for recent updates for the packages 	they manage. With the help of this tracker, it is possible to automate a lot of tasks 	that depend on tracking upstream versions such as – informing package managers via 	email of a new release, comparison tables of the packages versions in a distro vs 	upstream versions etc.</p>
+<br><hr><br>
+
+<h1> Using the Web Interface and the API </h1> <br> <hr> <br>
+
+<h2>Viewing records</h2>
+<p>To see existing records, click on the 'Records' link on the top of the webpage. This displays a page showing all the existing records along with links to show more information about the record, edit the record as well as to delete the record.</p>
+<p>Records that have been successfully processed are highlighted green while records that have been processed, but have errors are highlighted in red. Records that are yet to be processed are not highlighted. </p>
+<p>NOTE: Authentication is required to delete records.</p>
+
+<h2>Adding records</h2>
+<p>To add new records, click on the 'Records' link on the top of the webpage. Once the page loads, click on the 'New Record' link at the bottom of the page. This opens up the new record page where the details can be filled. Details about  each field are given below:</p>
+<ul>
+<li>Package Name :  This is the name of the package (not the project, though project name and package name tend to be the same mostly). 
+Ex : For Coherence (http://coherence.beebits.net), the packages can be found at http://coherence.beebits.net/download/. Here, package name is coherence, if you want to track the coherence packages. If you want to track the UPnP-Inspector package, then that should be entered on to the package name field. In general, the filename preceeding the version string is considered as the package name. </li>
+<li>Branch : This field is used to specify the branch of the software to track. To track the latest version/branch of the software, just enter 'latest' (without quotes).
+Ex : For tracking the 0.5.x branch of Coherence package, enter 0.5 in the branch field.
+The branch field accepts multiple inputs separated by a comma. Thus, to track multiple branches, one can enter all the branches separated by comma.
+Ex : Entering - 0.5, 0.6 – would track both 0.5.x and 0.6.x branches of the package, coherence.</li>
+<li>Method : This field defines the technique that is used to check for the upstream version. Each method is explained below:
+<ul>
+<li>HTTPLS : This is used for HTTP page listings where the download files are all listed in a single HTML page.</li>
+<li>FTPLS : This is used for FTP page listings where the download files are all listed in a FTP page.</li>
+<li>DualHTTPLS : This is used when a package has two separate download URLs (HTTP). This is usually applicable for projects where separate release and snapshots directories are maintained.</li>
+<li>SubdirHTTPLS : This is used when the download files are within subdirectories organized on the basis of their version numbers or branches.</li>
+<li>SVNLS : This is used for SVN web listing when there is a svn server listening on port 80 listing all tarballs.</li> 
+<li>SF : This is used for projects that are hosted on sourceforge.</li>
+<li>Google : This is used for projects that are hosted on Google Code.</li>
+<li>LP : This is used for projects that are hosted on launchpad.</li>
+<li>Trac : This is used for projects where the upstream tarballs are hosted on trac.</li>
+<li>Custom : This is used when the project does not fall into any of the above categories, or has special requirements not met above or while using DEHS watch files. </li>
+</ul></li>
+<li>URL : This field accepts the URL that has to be scanned. The URL entered depends on the method selected. For methods such as HTTPLS, FTPLS, SubdirHTTPLS, SVNLS and Trac the download URLs are entered. For methods such as SF, Google and LP, the project names used on the hosting platform is used. If Custom method is used, the URL is specified using REGEX.
+Examples : 
+For HTTPLS : http://coherence.beebits.net/download/
+For LP         : dee (To track project dee hosted at Launchpad)
+For Custom : http://coherence.beebits.net/download/Coherence-(.*)\.tar\.gz</li>
+</ul>
+
+Once all the fields are entered, click on the create record button to create the record.</p>
+
+<h2>Adding a record using DEHS watch file</h2>
+<p>To add a new record using an exisitng DEHS watch file, click on the browse button and locate the watch file. Click on the Extract URL Button to extract the watch URL. This automatically sets the method to Custom as the watch URL uses REGEX. Enter the package name and click on the create record button to create the record.</p>
+
+<h2>Editing an existing record</h2>
+<p>To edit an existing record, click on the Records link on the top of the webpage. Locate the record to edit and click on the edit link found on the right hand side. Update the fields and click on the update record button to save changes.</p>
+
+<h2>Deleting a record</h2>
+<p>To delete an existing record, click on the Records link on the top of the webpage. Locate the record to delete and click on the destroy button on the right hand side. </p>
+
+<p>NOTE : Authentication is required to delete records.</p>
+
+<h2>To revert a record to it's previous state</h2>
+
+<p>For each record, unless deleted, each update is recorded and a history of changes is maintained. This is used to revert a record to it's previous state in case of an error. To revert any record to any of it's previous states, open the Records page by clicking on the Records link on the top of the webpage. Locate the record to revert and click on the show button. In the version history section, the previous versions of the records are shown. If the record was processed, error information of historical records are shown as well. To revert, click on the revert link beside any of the previous versions of the records.</p>
+
+<p>NOTE : Authentication is required to revert records.</p>
+
+<h2>Searching for records</h2>
+
+<p>The current implementation of the upstream tracker contains a search bar on the top right corner, that can be used to search for packages. The search directly displays the record details in case of a single matching result but shows a disambiguation page when more than one results are returned per query. The results are shown in a table along with their URL and method used. The show button can be used to view the record details.</p>
+
+<h2>Using the API to access records</h2>
+
+<p>Data pertaining to records on the rails frontend can be accessed through it's REST API. Currently, the system supports two formats : JSON and XML. In the following sections, I shall demonstrate how to test/access data using the REST API calls.</p>
+
+<h2>To view records</h2>
+
+<p>Records can be viewed by accessing the records url (http://localhost:3000/records). To get response using the JSON format, one can open the URL  http://localhost:3000/records.json. For XML response,  http://localhost:3000/records.xml can be used. This, however, returns all the records that are available in the database.</p>
+
+<h2>To view a particular record</h2>
+
+<p>Specific records can be accessed by appending the record ID to the records URL. For example, to view record with ID 1, one can use the URL  http://localhost:3000/records/1.json or  http://localhost:3000/records/1.xml. </p>
+
+<h2>Fields returned in an API call</h2>
+
+<p>Whenever an API call is made, JSON or XML data is returned. Both these formats reflet the same data. In this section, I will explain the field names that are used in both these formats so that the information obtained can be further processed.</p>
+
+<p>Let's take a look at the XML tags that are returned from the API call</p>
+<ul>
+<li>Branch :  Contains the branch for which the record was processed.</li>
+<li>Created-at : Contains the timestamp at which the record was created.</li>
+<li>Error : Contains a boolean value. Depicts if the record was processed successfully or not.</li> 
+<li>ErrorMessage : Null if error is false. If error is true, additional error information is provided here.</li>
+<li>Id : This is the record ID used to uniquely identify any record.</li> 
+<li>Info : This tag contains the URL information. The upstream data is obtained by processing this URL.</li>
+<li>Latest-ver : Contains the latest version of the package. Is null if not processed.</li>
+<li>Loc : Contains the location or the URL of the tarball pertaining to the latest version of the package.</li>
+<li>Method : Contains the method used to process the record. </li>
+<li>PkgName :  Contains the name of the package.</li>
+<li>Processed : Contains a boolean value which shows if the record has been processed or not. </li>
+<li>Updated-at : Contains timestamp of last update.</li>
+<li>Vercntrl and vercntrlinfo are not used.</li>
+</ul>
+<h2>Using curl to fetch records</h2>
+
+<p>Curl can be used to test and play around with the API. How to use curl with RESTFul API can be found at http://blogs.plexibus.com/2009/01/15/rest-esting-with-curl/.</p></font>
