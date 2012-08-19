@@ -1,5 +1,5 @@
 TrackerRails::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :skip => :registrations
 
   get "faq/index"
 
@@ -72,5 +72,8 @@ TrackerRails::Application.routes.draw do
 
   match '/records/:id/revert/:ver', :controller => 'records', :action => 'revert', :as => 'restore', :via => 'PUT'
   match '/records/:id/revert/:ver', :controller => 'records', :action => 'revert', :as => 'restore', :via => 'GET'
+
+  match '/users/sign_up' => redirect('/404.html')
+
   
 end
