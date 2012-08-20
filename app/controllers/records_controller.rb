@@ -70,6 +70,7 @@ class RecordsController < ApplicationController
   # PUT /records/1.json
   def update
     @record = Record.find(params[:id])
+    @record.update_attribute(:updated_at, Time.now)
         
     respond_to do |format|
       if @record.update_attributes(params[:record])
