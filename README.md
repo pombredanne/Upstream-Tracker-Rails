@@ -1,15 +1,15 @@
 Upstream-Tracker-Rails
 ======================
 
-Setting up the stage
+__Setting up the stage__
 
 The project is split into two parts – the web frontend based on Rails and the backend based on Python. In this document, we will look only at the web frontend – how it works, how to set it up, how to use it and it's API calls. In this section, I shall explain in brief, how to set things up using Ubuntu OS as an example. 
 
-Installing Ruby on Rails
+__Installing Ruby on Rails__
 
 There are two ways to install Ruby on Rails on an Ubuntu machine. The easiest way is use the installer script while experienced users may want to install using terminal commands themselves. Here, I will try to go over both these methods.
 
-Using the script
+__Using the script__
 
 I came across a rails installer script while reading the blog at http://blog.sudobits.com/2012/05/02/how-to-install-ruby-on-rails-in-ubuntu-12-04-lts/.  The script is not written by me. However, it provides a convinient and a hasle free method to get started. 
 
@@ -18,7 +18,7 @@ I came across a rails installer script while reading the blog at http://blog.sud
 3. Use the cd command to switch to the directory where the script was downloaded. Use chmod +x rails-installer.sh to set the executable bit. 
 4. Run the script using ./rails-installer.sh. Once done, reboot the system and type in “rails -v” in the terminal. You should see version number greater than 3. If not, try repeating the above steps. If your version number is above 3, you are good to go.
 
-Manual
+__Manual__
 
 1. Install git and curl using : sudo apt-get install git curl
 2. Install RVM and dependencies : curl -L get.rvm.io | bash -s stable
@@ -30,38 +30,38 @@ Manual
 8. Check the version of ruby installed using : ruby -v (Should show 1.9.3)
 9. To install Ruby on Rails, install the rails gem for ruby using : gem install rails
 
-Testing Rails Environment
+__Testing Rails Environment__
 
 To test the rails environment that has been set up, run the following commands.
-rails new sample_app
-cd sample_app
-rails s
+_rails new sample_app_
+_cd sample_app_
+_rails s_
 
 Open a web browser and navigate to http://localhost:3000/. This should show you a rails page if everything is working fine. If you get an error page instead, it's possible that you missed out one of the steps above.
 
-Running the Web Frontend
+__Running the Web Frontend__
 
 To run the web frontend, clone the files from the git repository using 
 
-git clone https://github.com/nbprashanth/Upstream-Tracker-Rails.git
+_git clone https://github.com/nbprashanth/Upstream-Tracker-Rails.git_
 
 Once the files are cloned, cd into the folder and execute the following commands. 
 
-bundle install
-rake db:migrate
+_bundle install_
+_rake db:migrate_
 
-rails generate devise:install
-rails generate devise user
+_rails generate devise:install_
+_rails generate devise user_
 
-rails s
+_rails s_
 
 The bundle install command installs all the missing gemfiles that are required for the app to work properly. The db:migrate command is used to set up the databases for the app to use. The next two generate commands are used to set up devise, a gem used for user authentication.Finally, the rails s command is use to start the webrick server.
 
 You should now be able to see the web frontend at http://localhost:3000/.
 
-Manipulating records
+__Manipulating records__
 
-Viewing records
+__Viewing records__
 
 To see existing records, click on the 'Records' link on the top of the webpage. This displays a page showing all the existing records along with links to show more information about the record, edit the record as well as to delete the record.
 
@@ -69,7 +69,7 @@ Records that have been successfully processed are highlighted green while record
 
 NOTE: Authentication is required to delete records.
 
-Adding records
+__Adding records__
 
 To add new records, click on the 'Records' link on the top of the webpage. Once the page loads, click on the 'New Record' link at the bottom of the page. This opens up the new record page where the details can be filled. Details about  each field are given below:
 
@@ -98,43 +98,43 @@ For Custom : http://coherence.beebits.net/download/Coherence-(.*)\.tar\.gz
 
 Once all the fields are entered, click on the create record button to create the record.
 
-Adding a record using DEHS watch file
+__Adding a record using DEHS watch file__
 
 To add a new record using an exisitng DEHS watch file, click on the browse button and locate the watch file. Click on the Extract URL Button to extract the watch URL. This automatically sets the method to Custom as the watch URL uses REGEX. Enter the package name and click on the create record button to create the record.
 
-Editing an existing record
+__Editing an existing record__
 
 To edit an existing record, click on the Records link on the top of the webpage. Locate the record to edit and click on the edit link found on the right hand side. Update the fields and click on the update record button to save changes.
 
-Deleting a record
+__Deleting a record__
 
 To delete an existing record, click on the Records link on the top of the webpage. Locate the record to delete and click on the destroy button on the right hand side. 
 
 NOTE : Authentication is required to delete records.
 
-To revert a record to it's previous state
+__To revert a record to it's previous state__
 
 For each record, unless deleted, each update is recorded and a history of changes is maintained. This is used to revert a record to it's previous state in case of an error. To revert any record to any of it's previous states, open the Records page by clicking on the Records link on the top of the webpage. Locate the record to revert and click on the show button. In the version history section, the previous versions of the records are shown. If the record was processed, error information of historical records are shown as well. To revert, click on the revert link beside any of the previous versions of the records.
 
 NOTE : Authentication is required to revert records.
 
-Searching for records
+__Searching for records__
 
 The current implementation of the upstream tracker contains a search bar on the top right corner, that can be used to search for packages. The search directly displays the record details in case of a single matching result but shows a disambiguation page when more than one results are returned per query. The results are shown in a table along with their URL and method used. The show button can be used to view the record details.
 
-Using the API to access records
+__Using the API to access records__
 
 Data pertaining to records on the rails frontend can be accessed through it's REST API. Currently, the system supports two formats : JSON and XML. In the following sections, I shall demonstrate how to test/access data using the REST API calls.
 
-To view records
+__To view records__
 
 Records can be viewed by accessing the records url (http://localhost:3000/records). To get response using the JSON format, one can open the URL  http://localhost:3000/records.json. For XML response,  http://localhost:3000/records.xml can be used. This, however, returns all the records that are available in the database.
 
-To view a particular record
+__To view a particular record__
 
 Specific records can be accessed by appending the record ID to the records URL. For example, to view record with ID 1, one can use the URL  http://localhost:3000/records/1.json or  http://localhost:3000/records/1.xml. 
 
-Fields returned in an API call
+__Fields returned in an API call__
 
 Whenever an API call is made, JSON or XML data is returned. Both these formats reflet the same data. In this section, I will explain the field names that are used in both these formats so that the information obtained can be further processed.
 
@@ -173,15 +173,15 @@ Processed : Contains a boolean value which shows if the record has been processe
 Updated-at : Contains timestamp of last update.
 Vercntrl and vercntrlinfo are not used.
 
-Using curl to fetch records
+__Using curl to fetch records__
 
 Curl can be used to test and play around with the API. How to use curl with RESTFul API can be found at http://blogs.plexibus.com/2009/01/15/rest-esting-with-curl/.
 
-What's missing?
+__What's missing?__
 
 The Upstream Tracker was developed as a part of Google Summer of Code 2012 during a three month interval. Hence, there is a lot of scope for the project to be improved. Some of the current features that are lacking which can be worked upon for the future versions are :
 
-1. Improved UI
+1. Improve UI
 2. In case of multiple branches, the output is in CSV format. This can be updated to render proper XML with multiple branch tags instead of a single branch tag with CSV content.
 3. Comparison tables with particular distros.
 
